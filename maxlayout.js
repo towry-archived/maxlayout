@@ -42,6 +42,10 @@ window.maxlayout = (function ($) {
 
         strategy.implement(this);
     }
+    MaxLayout.prototype.config = function (name, value) {
+        if (!this.options) return;
+        this.options[name] = value;
+    }
 
     var Strategy = {factories: {}};
 
@@ -109,9 +113,12 @@ window.maxlayout = (function ($) {
 
     return function (selector, options) {
         var lay = new MaxLayout(selector, options);
-        return {
-            arrange: function () { lay.arrange.call(lay) }, 
-        }
+        var api = {
+            arrange: function () { lay.arrange.call(lay) },
+            config: function () { var args = [].slice.call(arguments); lay.config.apply(lay, args); }
+        };
+        
+        return api;
     };
 })(jQuery);
 
