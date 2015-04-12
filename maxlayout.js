@@ -1,3 +1,9 @@
+/*!
+ * Maxlayout library
+ * 
+ * @copyright (c) 2015, Towry Wang
+ * @license MIT http://towry.me/mit-license
+ */
 
 window.maxlayout = (function ($) {
 
@@ -12,21 +18,6 @@ window.maxlayout = (function ($) {
     function init () {
         this.elements = $(this.selector);
         if (!this.elements.length) return;
-
-        calculateWidth.call(this);
-    }
-
-    /*Layout:: */
-    function calculateWidth () {
-        this.totalWidth = function () {
-            var width = 0;
-            this.elements.each(function (i, a) {
-                var A = $(a);
-                width += ((parseInt(A.css('margin-left'), 10) || 0) + (parseInt(A.css('margin-right'), 10) || 0) + A.width());
-            });
-
-            return width;
-        }.call(this);
     }
 
     // arrange the layout
